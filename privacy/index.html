@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — BabyBite</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1A2E1A;
+            background: #FAFBF9;
+            min-height: 100vh
+        }
+
+        [data-lang="ar"] {
+            direction: rtl;
+            font-family: 'Noto Sans Arabic', 'Inter', sans-serif
+        }
+
+        [data-lang="zh"] {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif
+        }
+
+        .top-bar {
+            background: linear-gradient(135deg, #1B7A4A 0%, #2D9D5F 100%);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(27, 122, 74, 0.2)
+        }
+
+        .top-bar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .top-bar a:hover {
+            opacity: 0.85
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1B7A4A
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 32px 24px 80px
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 16px
+        }
+
+        .badge {
+            display: inline-block;
+            background: #E8F5EE;
+            color: #1B7A4A;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1A2E1A;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px
+        }
+
+        .header .updated {
+            font-size: 13px;
+            color: #8A9B8A;
+            font-weight: 500
+        }
+
+        .card {
+            background: #FFF;
+            border: 1px solid #E2E8DE;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 20px rgba(27, 122, 74, 0.06)
+        }
+
+        .card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1B7A4A;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .card h2 .num {
+            background: linear-gradient(135deg, #1B7A4A, #2D9D5F);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0
+        }
+
+        .card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1A2E1A;
+            margin: 14px 0 8px
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #5A6B5A;
+            margin-bottom: 10px
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin-bottom: 10px
+        }
+
+        [data-lang="ar"] .card ul {
+            padding-left: 0;
+            padding-right: 20px
+        }
+
+        .card li {
+            font-size: 14px;
+            color: #5A6B5A;
+            margin-bottom: 5px
+        }
+
+        .card strong {
+            color: #1A2E1A
+        }
+
+        .highlight-box {
+            background: #E8F5EE;
+            border: 1px solid #1B7A4A22;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0
+        }
+
+        .highlight-box p {
+            color: #145C38;
+            font-size: 13px;
+            margin: 0
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid #E2E8DE;
+            margin-top: 20px
+        }
+
+        .footer p {
+            color: #8A9B8A;
+            font-size: 13px;
+            margin-bottom: 4px
+        }
+
+        .footer a {
+            color: #1B7A4A;
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        .lang-content {
+            display: none
+        }
+
+        .lang-content.active {
+            display: block
+        }
+
+        @media(max-width:600px) {
+            .container {
+                padding: 24px 16px 60px
+            }
+
+            .header h1 {
+                font-size: 26px
+            }
+
+            .card {
+                padding: 22px 18px
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 16px
+            }
+
+            .lang-switcher {
+                justify-content: center
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <a href="../index.html">🍼 BabyBite</a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+            <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+            <button class="lang-btn" onclick="switchLang('es')">ES</button>
+            <button class="lang-btn" onclick="switchLang('de')">DE</button>
+            <button class="lang-btn" onclick="switchLang('ar')">عربي</button>
+            <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- ==================== ENGLISH ==================== -->
+        <div class="lang-content active" data-lang="en">
+            <div class="header">
+                <span class="badge">🔒 Privacy</span>
+                <h1>Privacy Policy</h1>
+                <p class="updated">Last updated: February 25, 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Introduction</h2>
+                <p>BabyBite ("we," "us," or "our") respects your privacy and is committed to protecting it. This Privacy
+                    Policy explains how we collect, use, and safeguard information when you use BabyBite.</p>
+                <p>By using the App, you consent to the practices described here.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> Information We Collect</h2>
+                <h3>2.1 Information You Provide</h3>
+                <ul>
+                    <li><strong>Baby Profile:</strong> Name, date of birth, gender, feeding type, dietary preferences,
+                        allergies, profile photos</li>
+                    <li><strong>Growth Data:</strong> Weight and height measurements you enter</li>
+                    <li><strong>Preferences:</strong> Language, units, region, notification settings</li>
+                    <li><strong>Milestones:</strong> Development milestones you track</li>
+                </ul>
+                <h3>2.2 Automatically Collected</h3>
+                <ul>
+                    <li>Device type, OS version, and app version</li>
+                    <li>App usage data to improve experience</li>
+                    <li>Anonymous crash reports</li>
+                </ul>
+                <h3>2.3 What We Do NOT Collect</h3>
+                <div class="highlight-box">
+                    <p>🛡️ We do <strong>not</strong> collect parent/caregiver real names, location data, financial
+                        information, or sell any data to third parties.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> How We Use Information</h2>
+                <ul>
+                    <li>Generate personalized meal plans based on baby's age and preferences</li>
+                    <li>Track growth and developmental milestones</li>
+                    <li>Provide allergy-aware food suggestions</li>
+                    <li>Send helpful feeding reminders (with your permission)</li>
+                    <li>Improve app features and user experience</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Data Storage & Security</h2>
+                <h3>4.1 Local Storage</h3>
+                <div class="highlight-box">
+                    <p>📱 <strong>All baby profile data, growth entries, and preferences are stored locally on your
+                            device.</strong> We do not upload your baby's personal information to our servers.</p>
+                </div>
+                <h3>4.2 Subscription Data</h3>
+                <p>Subscription status is managed through RevenueCat with an anonymous user identifier — no personal
+                    child data is shared.</p>
+                <h3>4.3 Security</h3>
+                <p>We use industry-standard security practices, but no electronic storage method is 100% secure.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> Third-Party Services</h2>
+                <ul>
+                    <li><strong>RevenueCat:</strong> Subscription management (anonymous ID only)</li>
+                    <li><strong>Google Play / App Store:</strong> Payment processing and distribution</li>
+                    <li><strong>Expo:</strong> App updates and push notifications</li>
+                </ul>
+                <p>Each has its own privacy policy governing data handling.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> Children's Privacy</h2>
+                <p>BabyBite is designed for parents and caregivers of babies (ages 0-3). The App is for adult use only.
+                    We do not knowingly collect information from children under 13.</p>
+                <p>Baby profile information is entered and accessible only to the parent/caregiver using the device.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Notifications</h2>
+                <p>With your permission, we send notifications for:</p>
+                <ul>
+                    <li>Daily meal reminders</li>
+                    <li>Weekly prep shopping reminders</li>
+                    <li>New food introduction suggestions</li>
+                    <li>Developmental milestone reminders</li>
+                </ul>
+                <p>Disable anytime via App or device settings.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">8</span> Your Rights</h2>
+                <ul>
+                    <li><strong>Access:</strong> View all data in the App anytime</li>
+                    <li><strong>Delete:</strong> Use "Reset All Data" in Settings or uninstall</li>
+                    <li><strong>Opt-out:</strong> Disable notifications and analytics anytime</li>
+                    <li><strong>Portability:</strong> Data stays locally on your device</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">9</span> Changes</h2>
+                <p>We may update this policy. Changes will be reflected in the "Last updated" date.</p>
+            </div>
+            <div class="card" id="data-deletion">
+                <h2><span class="num">10</span> Data Deletion Request</h2>
+                <div class="highlight-box">
+                    <p>🌐 <strong>Google Play Requirement:</strong> Although all personal data is stored locally on your
+                        device, you may request the deletion of any auxiliary data (such as anonymous subscription
+                        identifiers) by contacting us.</p>
+                </div>
+                <p>To request data deletion, please email <strong>support@babybite.app</strong> with the subject "Data
+                    Deletion Request". We will process your request within 48 hours.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">11</span> Contact Us</h2>
+                <p>Questions? <strong>support@babybite.app</strong></p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 BabyBite. All rights reserved.</p>
+                <p><a href="../terms/index.html">Terms of Service →</a></p>
+            </div>
+        </div>
+
+        <!-- ==================== FRENCH ==================== -->
+        <div class="lang-content" data-lang="fr">
+            <div class="header">
+                <span class="badge">🔒 Confidentialité</span>
+                <h1>Politique de Confidentialité</h1>
+                <p class="updated">Dernière mise à jour : 25 février 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Introduction</h2>
+                <p>BabyBite (« nous ») respecte votre vie privée et s'engage à la protéger. Cette Politique explique
+                    comment nous collectons, utilisons et protégeons les informations lorsque vous utilisez BabyBite.
+                </p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> Informations collectées</h2>
+                <h3>2.1 Informations que vous fournissez</h3>
+                <ul>
+                    <li><strong>Profil bébé :</strong> Nom, date de naissance, sexe, type d'alimentation, préférences
+                        alimentaires, allergies, photos</li>
+                    <li><strong>Données de croissance :</strong> Mesures de poids et de taille</li>
+                    <li><strong>Préférences :</strong> Langue, unités, région, paramètres de notification</li>
+                    <li><strong>Étapes de développement</strong> que vous suivez</li>
+                </ul>
+                <h3>2.2 Collecte automatique</h3>
+                <ul>
+                    <li>Type d'appareil, version du système et de l'application</li>
+                    <li>Données d'utilisation pour améliorer l'expérience</li>
+                    <li>Rapports de plantage anonymes</li>
+                </ul>
+                <h3>2.3 Ce que nous ne collectons PAS</h3>
+                <div class="highlight-box">
+                    <p>🛡️ Nous ne collectons <strong>pas</strong> les vrais noms des parents, les données de
+                        localisation, les informations financières, et nous ne vendons aucune donnée à des tiers.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> Utilisation des informations</h2>
+                <ul>
+                    <li>Générer des plans de repas personnalisés selon l'âge du bébé</li>
+                    <li>Suivre la croissance et le développement</li>
+                    <li>Fournir des suggestions alimentaires tenant compte des allergies</li>
+                    <li>Envoyer des rappels utiles (avec votre permission)</li>
+                    <li>Améliorer les fonctionnalités de l'application</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Stockage et sécurité des données</h2>
+                <div class="highlight-box">
+                    <p>📱 <strong>Toutes les données du profil bébé sont stockées localement sur votre
+                            appareil.</strong> Nous ne téléchargeons pas les informations personnelles de votre bébé sur
+                        nos serveurs.</p>
+                </div>
+                <p>L'état de l'abonnement est géré via RevenueCat avec un identifiant anonyme — aucune donnée
+                    personnelle de l'enfant n'est partagée.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> Services tiers</h2>
+                <ul>
+                    <li><strong>RevenueCat :</strong> Gestion d'abonnements (ID anonyme uniquement)</li>
+                    <li><strong>Google Play / App Store :</strong> Traitement des paiements</li>
+                    <li><strong>Expo :</strong> Mises à jour et notifications push</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> Confidentialité des enfants</h2>
+                <p>BabyBite est conçu pour les parents et soignants de bébés (0-3 ans). L'application est destinée aux
+                    adultes uniquement. Nous ne collectons pas sciemment d'informations auprès d'enfants de moins de 13
+                    ans.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Notifications</h2>
+                <p>Avec votre permission : rappels de repas quotidiens, rappels de préparation hebdomadaire, suggestions
+                    d'introduction alimentaire et rappels de développement. Désactivable à tout moment.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">8</span> Vos droits</h2>
+                <ul>
+                    <li><strong>Accès :</strong> Consultez toutes les données à tout moment</li>
+                    <li><strong>Suppression :</strong> Utilisez « Réinitialiser toutes les données » ou désinstallez
+                    </li>
+                    <li><strong>Désactivation :</strong> Désactivez les notifications et l'analyse à tout moment</li>
+                    <li><strong>Portabilité :</strong> Vos données restent localement sur votre appareil</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">9</span> Modifications</h2>
+                <p>Nous pouvons mettre à jour cette politique. La date de « Dernière mise à jour » sera modifiée.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">10</span> Contactez-nous</h2>
+                <p>Questions ? <strong>support@babybite.app</strong></p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 BabyBite. Tous droits réservés.</p>
+                <p><a href="../terms/index.html">Conditions d'utilisation →</a></p>
+            </div>
+        </div>
+
+        <!-- ==================== SPANISH ==================== -->
+        <div class="lang-content" data-lang="es">
+            <div class="header">
+                <span class="badge">🔒 Privacidad</span>
+                <h1>Política de Privacidad</h1>
+                <p class="updated">Última actualización: 25 de febrero de 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Introducción</h2>
+                <p>BabyBite ("nosotros") respeta su privacidad y se compromete a protegerla. Esta Política explica cómo
+                    recopilamos, usamos y protegemos la información cuando usa BabyBite.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> Información que recopilamos</h2>
+                <h3>2.1 Información que usted proporciona</h3>
+                <ul>
+                    <li><strong>Perfil del bebé:</strong> Nombre, fecha de nacimiento, sexo, tipo de alimentación,
+                        preferencias dietéticas, alergias, fotos</li>
+                    <li><strong>Datos de crecimiento:</strong> Medidas de peso y altura</li>
+                    <li><strong>Preferencias:</strong> Idioma, unidades, región, configuración de notificaciones</li>
+                    <li><strong>Hitos de desarrollo</strong> que elige rastrear</li>
+                </ul>
+                <h3>2.2 Recopilación automática</h3>
+                <ul>
+                    <li>Tipo de dispositivo, versión del SO y de la aplicación</li>
+                    <li>Datos de uso para mejorar la experiencia</li>
+                    <li>Informes de errores anónimos</li>
+                </ul>
+                <h3>2.3 Lo que NO recopilamos</h3>
+                <div class="highlight-box">
+                    <p>🛡️ <strong>No</strong> recopilamos nombres reales de padres, datos de ubicación, información
+                        financiera, ni vendemos datos a terceros.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> Uso de la información</h2>
+                <ul>
+                    <li>Generar planes de comida personalizados según la edad del bebé</li>
+                    <li>Rastrear el crecimiento y los hitos de desarrollo</li>
+                    <li>Proporcionar sugerencias alimentarias conscientes de alergias</li>
+                    <li>Enviar recordatorios útiles (con su permiso)</li>
+                    <li>Mejorar las funciones de la aplicación</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Almacenamiento y seguridad</h2>
+                <div class="highlight-box">
+                    <p>📱 <strong>Todos los datos del perfil del bebé se almacenan localmente en su
+                            dispositivo.</strong> No subimos la información personal de su bebé a nuestros servidores.
+                    </p>
+                </div>
+                <p>El estado de suscripción se gestiona mediante RevenueCat con un identificador anónimo — no se
+                    comparten datos personales del niño.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> Servicios de terceros</h2>
+                <ul>
+                    <li><strong>RevenueCat:</strong> Gestión de suscripciones (solo ID anónimo)</li>
+                    <li><strong>Google Play / App Store:</strong> Procesamiento de pagos</li>
+                    <li><strong>Expo:</strong> Actualizaciones y notificaciones push</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> Privacidad de los niños</h2>
+                <p>BabyBite está diseñado para padres y cuidadores de bebés (0-3 años). La aplicación es solo para uso
+                    de adultos. No recopilamos conscientemente información de menores de 13 años.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Notificaciones</h2>
+                <p>Con su permiso: recordatorios diarios de comidas, recordatorios semanales de preparación, sugerencias
+                    de introducción de alimentos y recordatorios de desarrollo. Desactívelos en cualquier momento.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">8</span> Sus derechos</h2>
+                <ul>
+                    <li><strong>Acceso:</strong> Vea todos los datos en cualquier momento</li>
+                    <li><strong>Eliminación:</strong> Use "Restablecer datos" o desinstale</li>
+                    <li><strong>Desactivación:</strong> Desactive notificaciones y análisis cuando quiera</li>
+                    <li><strong>Portabilidad:</strong> Sus datos permanecen en su dispositivo</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">9</span> Cambios</h2>
+                <p>Podemos actualizar esta política. Los cambios se reflejarán en la fecha de actualización.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">10</span> Contáctenos</h2>
+                <p>¿Preguntas? <strong>support@babybite.app</strong></p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 BabyBite. Todos los derechos reservados.</p>
+                <p><a href="../terms/index.html">Términos de servicio →</a></p>
+            </div>
+        </div>
+
+        <!-- ==================== GERMAN ==================== -->
+        <div class="lang-content" data-lang="de">
+            <div class="header">
+                <span class="badge">🔒 Datenschutz</span>
+                <h1>Datenschutzrichtlinie</h1>
+                <p class="updated">Letzte Aktualisierung: 25. Februar 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Einleitung</h2>
+                <p>BabyBite („wir") respektiert Ihre Privatsphäre und verpflichtet sich, diese zu schützen. Diese
+                    Datenschutzrichtlinie erklärt, wie wir Informationen sammeln, verwenden und schützen.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> Gesammelte Informationen</h2>
+                <h3>2.1 Von Ihnen bereitgestellt</h3>
+                <ul>
+                    <li><strong>Baby-Profil:</strong> Name, Geburtsdatum, Geschlecht, Fütterungsart,
+                        Ernährungspräferenzen, Allergien, Fotos</li>
+                    <li><strong>Wachstumsdaten:</strong> Gewichts- und Größenmessungen</li>
+                    <li><strong>Einstellungen:</strong> Sprache, Einheiten, Region, Benachrichtigungen</li>
+                    <li><strong>Meilensteine,</strong> die Sie verfolgen</li>
+                </ul>
+                <h3>2.2 Automatisch gesammelt</h3>
+                <ul>
+                    <li>Gerätetyp, OS-Version und App-Version</li>
+                    <li>Nutzungsdaten zur Verbesserung</li>
+                    <li>Anonyme Absturzberichte</li>
+                </ul>
+                <h3>2.3 Was wir NICHT sammeln</h3>
+                <div class="highlight-box">
+                    <p>🛡️ Wir sammeln <strong>keine</strong> echten Namen der Eltern, Standortdaten,
+                        Finanzinformationen und verkaufen keine Daten an Dritte.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> Verwendung der Informationen</h2>
+                <ul>
+                    <li>Personalisierte Mahlzeitenpläne basierend auf dem Alter des Babys erstellen</li>
+                    <li>Wachstum und Entwicklungsmeilensteine verfolgen</li>
+                    <li>Allergenbewusste Lebensmittelvorschläge anbieten</li>
+                    <li>Hilfreiche Erinnerungen senden (mit Ihrer Erlaubnis)</li>
+                    <li>App-Funktionen verbessern</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Datenspeicherung und Sicherheit</h2>
+                <div class="highlight-box">
+                    <p>📱 <strong>Alle Baby-Profildaten werden lokal auf Ihrem Gerät gespeichert.</strong> Wir laden
+                        keine persönlichen Informationen auf unsere Server hoch.</p>
+                </div>
+                <p>Der Abonnementstatus wird über RevenueCat mit anonymer Kennung verwaltet — keine persönlichen
+                    Kinderdaten werden geteilt.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> Drittanbieterdienste</h2>
+                <ul>
+                    <li><strong>RevenueCat:</strong> Abonnementverwaltung (nur anonyme ID)</li>
+                    <li><strong>Google Play / App Store:</strong> Zahlungsabwicklung</li>
+                    <li><strong>Expo:</strong> App-Updates und Push-Benachrichtigungen</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> Datenschutz für Kinder</h2>
+                <p>BabyBite ist für Eltern und Betreuer von Babys (0-3 Jahre) konzipiert. Die App ist nur für
+                    Erwachsene. Wir sammeln wissentlich keine Informationen von Kindern unter 13 Jahren.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Benachrichtigungen</h2>
+                <p>Mit Ihrer Erlaubnis: tägliche Mahlzeitenerinnerungen, wöchentliche Vorbereitung, Vorschläge zur
+                    Lebensmitteleinführung und Entwicklungserinnerungen. Jederzeit deaktivierbar.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">8</span> Ihre Rechte</h2>
+                <ul>
+                    <li><strong>Zugang:</strong> Alle Daten jederzeit einsehen</li>
+                    <li><strong>Löschung:</strong> „Alle Daten zurücksetzen" oder deinstallieren</li>
+                    <li><strong>Ablehnung:</strong> Benachrichtigungen und Analysen jederzeit deaktivieren</li>
+                    <li><strong>Übertragbarkeit:</strong> Daten bleiben lokal auf Ihrem Gerät</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">9</span> Änderungen</h2>
+                <p>Wir können diese Richtlinie aktualisieren. Änderungen werden im Aktualisierungsdatum widergespiegelt.
+                </p>
+            </div>
+            <div class="card">
+                <h2><span class="num">10</span> Kontakt</h2>
+                <p>Fragen? <strong>support@babybite.app</strong></p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 BabyBite. Alle Rechte vorbehalten.</p>
+                <p><a href="../terms/index.html">Nutzungsbedingungen →</a></p>
+            </div>
+        </div>
+
+        <!-- ==================== ARABIC ==================== -->
+        <div class="lang-content" data-lang="ar">
+            <div class="header">
+                <span class="badge">🔒 الخصوصية</span>
+                <h1>سياسة الخصوصية</h1>
+                <p class="updated">آخر تحديث: 25 فبراير 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> المقدمة</h2>
+                <p>يحترم BabyBite ("نحن") خصوصيتك ويلتزم بحمايتها. توضح سياسة الخصوصية هذه كيفية جمعنا للمعلومات
+                    واستخدامها وحمايتها عند استخدامك لـ BabyBite.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> المعلومات التي نجمعها</h2>
+                <h3>2.1 المعلومات التي تقدمها</h3>
+                <ul>
+                    <li><strong>ملف تعريف الطفل:</strong> الاسم، تاريخ الميلاد، الجنس، نوع التغذية، التفضيلات الغذائية،
+                        الحساسية، الصور</li>
+                    <li><strong>بيانات النمو:</strong> قياسات الوزن والطول</li>
+                    <li><strong>التفضيلات:</strong> اللغة، الوحدات، المنطقة، إعدادات الإشعارات</li>
+                    <li><strong>مراحل التطور</strong> التي تتتبعها</li>
+                </ul>
+                <h3>2.2 المعلومات المجمعة تلقائياً</h3>
+                <ul>
+                    <li>نوع الجهاز، إصدار النظام والتطبيق</li>
+                    <li>بيانات الاستخدام لتحسين التجربة</li>
+                    <li>تقارير أعطال مجهولة الهوية</li>
+                </ul>
+                <h3>2.3 ما لا نجمعه</h3>
+                <div class="highlight-box">
+                    <p>🛡️ نحن <strong>لا</strong> نجمع الأسماء الحقيقية للوالدين، بيانات الموقع، المعلومات المالية، ولا
+                        نبيع أي بيانات لأطراف ثالثة.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> استخدام المعلومات</h2>
+                <ul>
+                    <li>إنشاء خطط وجبات مخصصة حسب عمر الطفل</li>
+                    <li>تتبع النمو ومراحل التطور</li>
+                    <li>تقديم اقتراحات غذائية تراعي الحساسية</li>
+                    <li>إرسال تذكيرات مفيدة (بإذنك)</li>
+                    <li>تحسين ميزات التطبيق</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> تخزين البيانات والأمان</h2>
+                <div class="highlight-box">
+                    <p>📱 <strong>جميع بيانات ملف تعريف الطفل مخزنة محلياً على جهازك.</strong> نحن لا نحمّل المعلومات
+                        الشخصية لطفلك على خوادمنا.</p>
+                </div>
+                <p>تتم إدارة حالة الاشتراك عبر RevenueCat بمعرّف مجهول — لا يتم مشاركة بيانات الطفل الشخصية.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> خدمات الطرف الثالث</h2>
+                <ul>
+                    <li><strong>RevenueCat:</strong> إدارة الاشتراكات (معرّف مجهول فقط)</li>
+                    <li><strong>Google Play / App Store:</strong> معالجة المدفوعات</li>
+                    <li><strong>Expo:</strong> تحديثات التطبيق والإشعارات</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> خصوصية الأطفال</h2>
+                <p>BabyBite مصمم لآباء وأمهات ومقدمي رعاية الأطفال (0-3 سنوات). التطبيق للاستخدام البالغين فقط. لا نجمع
+                    عمداً معلومات من أطفال دون 13 عاماً.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> الإشعارات</h2>
+                <p>بإذنك: تذكيرات الوجبات اليومية، تذكيرات التحضير الأسبوعي، اقتراحات إدخال الطعام، وتذكيرات التطور.
+                    يمكن إيقافها في أي وقت.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">8</span> حقوقك</h2>
+                <ul>
+                    <li><strong>الوصول:</strong> عرض جميع البيانات في أي وقت</li>
+                    <li><strong>الحذف:</strong> استخدم "إعادة تعيين جميع البيانات" أو إلغاء التثبيت</li>
+                    <li><strong>إلغاء الاشتراك:</strong> إيقاف الإشعارات والتحليلات في أي وقت</li>
+                    <li><strong>قابلية النقل:</strong> بياناتك تبقى محلياً على جهازك</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">9</span> التغييرات</h2>
+                <p>قد نحدث هذه السياسة. ستنعكس التغييرات في تاريخ التحديث.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">10</span> اتصل بنا</h2>
+                <p>أسئلة؟ <strong>support@babybite.app</strong></p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 BabyBite. جميع الحقوق محفوظة.</p>
+                <p><a href="../terms/index.html">شروط الخدمة →</a></p>
+            </div>
+        </div>
+
+        <!-- ==================== CHINESE ==================== -->
+        <div class="lang-content" data-lang="zh">
+            <div class="header">
+                <span class="badge">🔒 隐私</span>
+                <h1>隐私政策</h1>
+                <p class="updated">最后更新：2026年2月25日</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> 简介</h2>
+                <p>BabyBite（"我们"）尊重您的隐私并致力于保护它。本隐私政策说明了我们在您使用BabyBite时如何收集、使用和保护信息。</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> 我们收集的信息</h2>
+                <h3>2.1 您提供的信息</h3>
+                <ul>
+                    <li><strong>宝宝档案：</strong>姓名、出生日期、性别、喂养方式、饮食偏好、过敏信息、照片</li>
+                    <li><strong>成长数据：</strong>您输入的体重和身高测量值</li>
+                    <li><strong>偏好设置：</strong>语言、单位、地区、通知设置</li>
+                    <li><strong>发育里程碑</strong></li>
+                </ul>
+                <h3>2.2 自动收集</h3>
+                <ul>
+                    <li>设备类型、操作系统版本和应用版本</li>
+                    <li>用于改善体验的使用数据</li>
+                    <li>匿名崩溃报告</li>
+                </ul>
+                <h3>2.3 我们不收集的信息</h3>
+                <div class="highlight-box">
+                    <p>🛡️ 我们<strong>不</strong>收集家长真实姓名、位置数据、财务信息，也不向第三方出售任何数据。</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> 信息使用方式</h2>
+                <ul>
+                    <li>根据宝宝的年龄和偏好生成个性化膳食计划</li>
+                    <li>跟踪成长和发育里程碑</li>
+                    <li>提供考虑过敏因素的食物建议</li>
+                    <li>发送有用的喂养提醒（经您许可）</li>
+                    <li>改善应用功能和用户体验</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> 数据存储与安全</h2>
+                <div class="highlight-box">
+                    <p>📱 <strong>所有宝宝档案数据均存储在您的本地设备上。</strong>我们不会将您宝宝的个人信息上传到我们的服务器。</p>
+                </div>
+                <p>订阅状态通过RevenueCat以匿名标识符管理——不共享儿童个人数据。</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> 第三方服务</h2>
+                <ul>
+                    <li><strong>RevenueCat：</strong>订阅管理（仅匿名ID）</li>
+                    <li><strong>Google Play / App Store：</strong>支付处理</li>
+                    <li><strong>Expo：</strong>应用更新和推送通知</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> 儿童隐私</h2>
+                <p>BabyBite专为婴幼儿（0-3岁）的父母和照护者设计。本应用仅供成人使用。我们不会故意收集13岁以下儿童的信息。</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> 通知</h2>
+                <p>经您许可：每日膳食提醒、每周准备提醒、新食物介绍建议和发育里程碑提醒。可随时在设置中关闭。</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">8</span> 您的权利</h2>
+                <ul>
+                    <li><strong>访问：</strong>随时查看所有数据</li>
+                    <li><strong>删除：</strong>使用"重置所有数据"或卸载应用</li>
+                    <li><strong>退出：</strong>随时禁用通知和分析</li>
+                    <li><strong>可携带性：</strong>数据保留在您的本地设备上</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">9</span> 变更</h2>
+                <p>我们可能会更新本政策。变更将反映在更新日期中。</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">10</span> 联系我们</h2>
+                <p>有问题？<strong>support@babybite.app</strong></p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 BabyBite. 保留所有权利。</p>
+                <p><a href="../terms/index.html">服务条款 →</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            const event = window.event || arguments.callee.caller.arguments[0];
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('[data-lang="' + lang + '"]').classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+
+</html>
