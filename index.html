@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BabyBite — Legal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FAFBF9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        [data-lang="ar"] {
+            direction: rtl;
+            font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+        }
+
+        [data-lang="zh"] {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+        }
+
+        .lang-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1B7A4A 0%, #2D9D5F 100%);
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(27, 122, 74, 0.2);
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1B7A4A;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 24px 40px;
+        }
+
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 28px;
+            background: linear-gradient(145deg, #1B7A4A, #2D9D5F);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 32px rgba(27, 122, 74, 0.25);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .logo-circle span {
+            font-size: 48px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1A2E1A;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 .green {
+            color: #1B7A4A;
+        }
+
+        .hero .tagline {
+            font-size: 16px;
+            color: #5A6B5A;
+            font-weight: 500;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            padding: 0 24px 60px;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .card {
+            flex: 1;
+            background: #FFFFFF;
+            border: 1px solid #E2E8DE;
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1B7A4A, #2D9D5F);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(27, 122, 74, 0.12);
+            border-color: #1B7A4A;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+        }
+
+        .card.terms .icon {
+            background: #E8F5EE;
+        }
+
+        .card.privacy .icon {
+            background: #FFF3DC;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A2E1A;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #5A6B5A;
+            line-height: 1.5;
+        }
+
+        .card .arrow {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1B7A4A;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #8A9B8A;
+            font-size: 13px;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: contents;
+        }
+
+        @media (max-width: 500px) {
+            .cards {
+                flex-direction: column;
+                padding: 0 20px 40px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lang-bar">
+        <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+        <button class="lang-btn" onclick="switchLang('es')">ES</button>
+        <button class="lang-btn" onclick="switchLang('de')">DE</button>
+        <button class="lang-btn" onclick="switchLang('ar')">عربي</button>
+        <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+    </div>
+
+    <!-- ENGLISH -->
+    <div class="lang-content active" data-lang="en">
+        <div class="hero">
+            <div class="logo-circle"><span>🍼</span></div>
+            <h1>Baby<span class="green">Bite</span></h1>
+            <p class="tagline">Legal Documents</p>
+        </div>
+        <div class="cards">
+            <a class="card terms" href="./terms/index.html">
+                <div class="icon">📜</div>
+                <h2>Terms of Service</h2>
+                <p>Our terms and conditions for using the BabyBite app</p>
+                <span class="arrow">Read Terms →</span>
+            </a>
+            <a class="card privacy" href="./privacy/index.html">
+                <div class="icon">🔒</div>
+                <h2>Privacy Policy</h2>
+                <p>How we handle and protect your data and your baby's information</p>
+                <span class="arrow">Read Policy →</span>
+            </a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 BabyBite. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- FRENCH -->
+    <div class="lang-content" data-lang="fr">
+        <div class="hero">
+            <div class="logo-circle"><span>🍼</span></div>
+            <h1>Baby<span class="green">Bite</span></h1>
+            <p class="tagline">Documents juridiques</p>
+        </div>
+        <div class="cards">
+            <a class="card terms" href="./terms/index.html">
+                <div class="icon">📜</div>
+                <h2>Conditions d'utilisation</h2>
+                <p>Nos conditions générales d'utilisation de l'application BabyBite</p>
+                <span class="arrow">Lire les conditions →</span>
+            </a>
+            <a class="card privacy" href="./privacy/index.html">
+                <div class="icon">🔒</div>
+                <h2>Politique de confidentialité</h2>
+                <p>Comment nous traitons et protégeons vos données et celles de votre bébé</p>
+                <span class="arrow">Lire la politique →</span>
+            </a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 BabyBite. Tous droits réservés.</p>
+        </div>
+    </div>
+
+    <!-- SPANISH -->
+    <div class="lang-content" data-lang="es">
+        <div class="hero">
+            <div class="logo-circle"><span>🍼</span></div>
+            <h1>Baby<span class="green">Bite</span></h1>
+            <p class="tagline">Documentos legales</p>
+        </div>
+        <div class="cards">
+            <a class="card terms" href="./terms/index.html">
+                <div class="icon">📜</div>
+                <h2>Términos de servicio</h2>
+                <p>Nuestros términos y condiciones para usar la aplicación BabyBite</p>
+                <span class="arrow">Leer términos →</span>
+            </a>
+            <a class="card privacy" href="./privacy/index.html">
+                <div class="icon">🔒</div>
+                <h2>Política de privacidad</h2>
+                <p>Cómo manejamos y protegemos sus datos y la información de su bebé</p>
+                <span class="arrow">Leer política →</span>
+            </a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 BabyBite. Todos los derechos reservados.</p>
+        </div>
+    </div>
+
+    <!-- GERMAN -->
+    <div class="lang-content" data-lang="de">
+        <div class="hero">
+            <div class="logo-circle"><span>🍼</span></div>
+            <h1>Baby<span class="green">Bite</span></h1>
+            <p class="tagline">Rechtliche Dokumente</p>
+        </div>
+        <div class="cards">
+            <a class="card terms" href="./terms/index.html">
+                <div class="icon">📜</div>
+                <h2>Nutzungsbedingungen</h2>
+                <p>Unsere Geschäftsbedingungen für die Nutzung der BabyBite-App</p>
+                <span class="arrow">Bedingungen lesen →</span>
+            </a>
+            <a class="card privacy" href="./privacy/index.html">
+                <div class="icon">🔒</div>
+                <h2>Datenschutzrichtlinie</h2>
+                <p>Wie wir Ihre Daten und die Informationen Ihres Babys behandeln und schützen</p>
+                <span class="arrow">Richtlinie lesen →</span>
+            </a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 BabyBite. Alle Rechte vorbehalten.</p>
+        </div>
+    </div>
+
+    <!-- ARABIC -->
+    <div class="lang-content" data-lang="ar">
+        <div class="hero">
+            <div class="logo-circle"><span>🍼</span></div>
+            <h1>Baby<span class="green">Bite</span></h1>
+            <p class="tagline">المستندات القانونية</p>
+        </div>
+        <div class="cards">
+            <a class="card terms" href="./terms/index.html">
+                <div class="icon">📜</div>
+                <h2>شروط الخدمة</h2>
+                <p>الشروط والأحكام الخاصة بنا لاستخدام تطبيق BabyBite</p>
+                <span class="arrow">← قراءة الشروط</span>
+            </a>
+            <a class="card privacy" href="./privacy/index.html">
+                <div class="icon">🔒</div>
+                <h2>سياسة الخصوصية</h2>
+                <p>كيف نتعامل مع بياناتك ومعلومات طفلك ونحميها</p>
+                <span class="arrow">← قراءة السياسة</span>
+            </a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 BabyBite. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+
+    <!-- CHINESE -->
+    <div class="lang-content" data-lang="zh">
+        <div class="hero">
+            <div class="logo-circle"><span>🍼</span></div>
+            <h1>Baby<span class="green">Bite</span></h1>
+            <p class="tagline">法律文件</p>
+        </div>
+        <div class="cards">
+            <a class="card terms" href="./terms/index.html">
+                <div class="icon">📜</div>
+                <h2>服务条款</h2>
+                <p>使用BabyBite应用的条款和条件</p>
+                <span class="arrow">阅读条款 →</span>
+            </a>
+            <a class="card privacy" href="./privacy/index.html">
+                <div class="icon">🔒</div>
+                <h2>隐私政策</h2>
+                <p>我们如何处理和保护您和宝宝的数据信息</p>
+                <span class="arrow">阅读政策 →</span>
+            </a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 BabyBite. 保留所有权利。</p>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('[data-lang="' + lang + '"]').classList.add('active');
+            event.target.classList.add('active');
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+
+</html>
