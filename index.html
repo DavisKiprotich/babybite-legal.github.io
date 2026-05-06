@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,7 +123,7 @@
             display: flex;
             gap: 20px;
             padding: 0 24px 60px;
-            max-width: 700px;
+            max-width: 980px;
             width: 100%;
         }
 
@@ -182,6 +181,10 @@
             background: #FFF3DC;
         }
 
+        .card.deletion .icon {
+            background: #FFE8E8;
+        }
+
         .card h2 {
             font-size: 18px;
             font-weight: 700;
@@ -218,7 +221,7 @@
             display: contents;
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 760px) {
             .cards {
                 flex-direction: column;
                 padding: 0 20px 40px;
@@ -261,6 +264,12 @@
                 <p>How we handle and protect your data and your baby's information</p>
                 <span class="arrow">Read Policy →</span>
             </a>
+            <a class="card deletion" href="./account-deletion/index.html">
+                <div class="icon">🗑️</div>
+                <h2>Account & Data Deletion</h2>
+                <p>How to reset local app data or request deletion support</p>
+                <span class="arrow">Deletion Info →</span>
+            </a>
         </div>
         <div class="footer">
             <p>&copy; 2026 WeanAtlas. All rights reserved.</p>
@@ -286,6 +295,12 @@
                 <h2>Politique de confidentialité</h2>
                 <p>Comment nous traitons et protégeons vos données et celles de votre bébé</p>
                 <span class="arrow">Lire la politique →</span>
+            </a>
+            <a class="card deletion" href="./account-deletion/index.html">
+                <div class="icon">🗑️</div>
+                <h2>Suppression des données</h2>
+                <p>Comment réinitialiser les données locales ou demander de l'aide</p>
+                <span class="arrow">Infos de suppression →</span>
             </a>
         </div>
         <div class="footer">
@@ -313,6 +328,12 @@
                 <p>Cómo manejamos y protegemos sus datos y la información de su bebé</p>
                 <span class="arrow">Leer política →</span>
             </a>
+            <a class="card deletion" href="./account-deletion/index.html">
+                <div class="icon">🗑️</div>
+                <h2>Eliminación de datos</h2>
+                <p>Cómo restablecer datos locales o solicitar ayuda de eliminación</p>
+                <span class="arrow">Ver eliminación →</span>
+            </a>
         </div>
         <div class="footer">
             <p>&copy; 2026 WeanAtlas. Todos los derechos reservados.</p>
@@ -338,6 +359,12 @@
                 <h2>Datenschutzrichtlinie</h2>
                 <p>Wie wir Ihre Daten und die Informationen Ihres Babys behandeln und schützen</p>
                 <span class="arrow">Richtlinie lesen →</span>
+            </a>
+            <a class="card deletion" href="./account-deletion/index.html">
+                <div class="icon">🗑️</div>
+                <h2>Datenlöschung</h2>
+                <p>Lokale App-Daten zurücksetzen oder Löschhilfe anfordern</p>
+                <span class="arrow">Löschung ansehen →</span>
             </a>
         </div>
         <div class="footer">
@@ -365,6 +392,12 @@
                 <p>كيف نتعامل مع بياناتك ومعلومات طفلك ونحميها</p>
                 <span class="arrow">← قراءة السياسة</span>
             </a>
+            <a class="card deletion" href="./account-deletion/index.html">
+                <div class="icon">🗑️</div>
+                <h2>حذف البيانات</h2>
+                <p>كيفية إعادة ضبط بيانات التطبيق المحلية أو طلب المساعدة</p>
+                <span class="arrow">← معلومات الحذف</span>
+            </a>
         </div>
         <div class="footer">
             <p>&copy; 2026 WeanAtlas. جميع الحقوق محفوظة.</p>
@@ -391,6 +424,12 @@
                 <p>我们如何处理和保护您和宝宝的数据信息</p>
                 <span class="arrow">阅读政策 →</span>
             </a>
+            <a class="card deletion" href="./account-deletion/index.html">
+                <div class="icon">🗑️</div>
+                <h2>账户与数据删除</h2>
+                <p>如何重置本地应用数据或请求删除帮助</p>
+                <span class="arrow">查看删除说明 →</span>
+            </a>
         </div>
         <div class="footer">
             <p>&copy; 2026 WeanAtlas. 保留所有权利。</p>
@@ -399,14 +438,16 @@
 
     <script>
         function switchLang(lang) {
+            const event = window.event || arguments.callee.caller.arguments[0];
             document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector('[data-lang="' + lang + '"]').classList.add('active');
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
             document.documentElement.lang = lang;
         }
     </script>
 </body>
 
 </html>
-```
