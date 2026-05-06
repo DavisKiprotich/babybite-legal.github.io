@@ -1,1 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion — WeanAtlas</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1A2E1A;
+            background: #FAFBF9;
+            min-height: 100vh
+        }
+
+        [data-lang="ar"] {
+            direction: rtl;
+            font-family: 'Noto Sans Arabic', 'Inter', sans-serif
+        }
+
+        [data-lang="zh"] {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif
+        }
+
+        .top-bar {
+            background: linear-gradient(135deg, #1B7A4A 0%, #2D9D5F 100%);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(27, 122, 74, 0.2)
+        }
+
+        .top-bar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .top-bar a:hover {
+            opacity: 0.85
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1B7A4A
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 32px 24px 80px
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 16px
+        }
+
+        .badge {
+            display: inline-block;
+            background: #E8F5EE;
+            color: #1B7A4A;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1A2E1A;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px
+        }
+
+        .header .updated {
+            font-size: 13px;
+            color: #8A9B8A;
+            font-weight: 500
+        }
+
+        .card {
+            background: #FFF;
+            border: 1px solid #E2E8DE;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 20px rgba(27, 122, 74, 0.06)
+        }
+
+        .card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1B7A4A;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .card h2 .num {
+            background: linear-gradient(135deg, #1B7A4A, #2D9D5F);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0
+        }
+
+        .card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1A2E1A;
+            margin: 14px 0 8px
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #5A6B5A;
+            margin-bottom: 10px
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin-bottom: 10px
+        }
+
+        [data-lang="ar"] .card ul {
+            padding-left: 0;
+            padding-right: 20px
+        }
+
+        .card li {
+            font-size: 14px;
+            color: #5A6B5A;
+            margin-bottom: 5px
+        }
+
+        .card strong {
+            color: #1A2E1A
+        }
+
+        .highlight-box {
+            background: #E8F5EE;
+            border: 1px solid #1B7A4A22;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0
+        }
+
+        .highlight-box p {
+            color: #145C38;
+            font-size: 13px;
+            margin: 0
+        }
+
+        .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #1B7A4A 0%, #2D9D5F 100%);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            margin-top: 8px
+        }
+
+        .cta:hover {
+            opacity: 0.92
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid #E2E8DE;
+            margin-top: 20px
+        }
+
+        .footer p {
+            color: #8A9B8A;
+            font-size: 13px;
+            margin-bottom: 4px
+        }
+
+        .footer a {
+            color: #1B7A4A;
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        .lang-content {
+            display: none
+        }
+
+        .lang-content.active {
+            display: block
+        }
+
+        @media(max-width:600px) {
+            .container {
+                padding: 24px 16px 60px
+            }
+
+            .header h1 {
+                font-size: 26px
+            }
+
+            .card {
+                padding: 22px 18px
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 16px
+            }
+
+            .lang-switcher {
+                justify-content: center
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <a href="../index.html">🍼 WeanAtlas</a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+            <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+            <button class="lang-btn" onclick="switchLang('es')">ES</button>
+            <button class="lang-btn" onclick="switchLang('de')">DE</button>
+            <button class="lang-btn" onclick="switchLang('ar')">عربي</button>
+            <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="lang-content active" data-lang="en">
+            <div class="header">
+                <span class="badge">Delete Data</span>
+                <h1>Account & Data Deletion</h1>
+                <p class="updated">Last updated: May 6, 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Overview</h2>
+                <p>WeanAtlas (BabyBite) is designed primarily as a local-first baby feeding and nutrition app. This page explains how users can remove app data and request deletion of any limited auxiliary subscription-related data.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> No App Account System</h2>
+                <p>WeanAtlas does <strong>not currently create or require a personal user account</strong>. There is no in-app sign-up, login, username, password, or cloud account profile for caregivers.</p>
+                <div class="highlight-box">
+                    <p>Most baby profile, meal planning, growth, milestone, grocery, and settings data is stored locally on your device only.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> Delete Data in the App</h2>
+                <p>If you still have the app installed, you can erase your local app data directly inside WeanAtlas:</p>
+                <ul>
+                    <li>Open <strong>WeanAtlas</strong>.</li>
+                    <li>Go to <strong>Settings</strong>.</li>
+                    <li>Open the <strong>Danger Zone</strong> section.</li>
+                    <li>Enable the Danger Zone toggle.</li>
+                    <li>Tap <strong>Reset App Data</strong>.</li>
+                    <li>Confirm the reset prompts.</li>
+                </ul>
+                <p>This clears locally stored app data and returns the app to onboarding state on that device.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Delete Data Without the App</h2>
+                <p>If you no longer have access to the app, you can still request deletion support by email.</p>
+                <ul>
+                    <li>Email <strong>devmile45@gmail.com</strong>.</li>
+                    <li>Use the subject line <strong>WeanAtlas Data Deletion Request</strong>.</li>
+                    <li>If your request relates to subscription records, mention your platform: <strong>Google Play</strong> or <strong>Apple App Store</strong>.</li>
+                </ul>
+                <a class="cta" href="mailto:devmile45@gmail.com?subject=WeanAtlas%20Data%20Deletion%20Request">Email Deletion Request</a>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> What Gets Deleted</h2>
+                <p>When you reset app data on-device, the following locally stored information may be removed from that device:</p>
+                <ul>
+                    <li>Baby profile data such as name, date of birth, gender, feeding type, allergies, dietary preferences, notes, and profile photo reference.</li>
+                    <li>Growth entries, completed meals, custom meals, swapped meals, meal feedback, food preference scores, milestones, and streak data.</li>
+                    <li>Saved foods, grocery items, checked grocery state, selected region, trial state, and app preferences such as language, units, and notification settings.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> What May Be Retained</h2>
+                <p>Some limited data may remain outside the app for billing or legal reasons:</p>
+                <ul>
+                    <li>Subscription and purchase history retained by Google Play or the Apple App Store under their own policies.</li>
+                    <li>Limited subscription metadata or anonymous identifiers processed by RevenueCat for purchase management.</li>
+                    <li>Device-level backups or copies outside our direct control.</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>Deleting app data does not automatically cancel an active subscription. Store-managed subscriptions must be canceled separately in Google Play or Apple subscription settings.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Contact</h2>
+                <p>If you need help with deletion or have questions about this process, contact <strong>devmile45@gmail.com</strong>.</p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 WeanAtlas. All rights reserved.</p>
+                <p><a href="../privacy/index.html">Privacy Policy</a> | <a href="../terms/index.html">Terms of Service</a></p>
+            </div>
+        </div>
+
+        <div class="lang-content" data-lang="fr">
+            <div class="header">
+                <span class="badge">Suppression</span>
+                <h1>Suppression du compte et des données</h1>
+                <p class="updated">Dernière mise à jour : 6 mai 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Aperçu</h2>
+                <p>WeanAtlas (BabyBite) est principalement une application locale d'alimentation et de nutrition pour bébé. Cette page explique comment supprimer les données de l'application et demander la suppression de données auxiliaires limitées liées à l'abonnement.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> Pas de système de compte</h2>
+                <p>WeanAtlas <strong>ne crée pas et n'exige pas actuellement de compte utilisateur personnel</strong>. Il n'existe pas d'inscription, de connexion, de nom d'utilisateur ni de mot de passe dans l'application.</p>
+                <div class="highlight-box">
+                    <p>La plupart des données du profil bébé, des repas, de la croissance, des jalons, des courses et des réglages sont stockées uniquement sur votre appareil.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> Supprimer les données dans l'application</h2>
+                <p>Si l'application est encore installée, vous pouvez effacer vos données locales directement dans WeanAtlas :</p>
+                <ul>
+                    <li>Ouvrez <strong>WeanAtlas</strong>.</li>
+                    <li>Allez dans <strong>Réglages</strong>.</li>
+                    <li>Ouvrez la section <strong>Danger Zone</strong>.</li>
+                    <li>Activez l'interrupteur de la Danger Zone.</li>
+                    <li>Appuyez sur <strong>Reset App Data</strong>.</li>
+                    <li>Confirmez les étapes de réinitialisation.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Supprimer sans l'application</h2>
+                <p>Si vous n'avez plus accès à l'application, vous pouvez demander de l'aide par email.</p>
+                <ul>
+                    <li>Envoyez un email à <strong>devmile45@gmail.com</strong>.</li>
+                    <li>Objet : <strong>WeanAtlas Data Deletion Request</strong>.</li>
+                    <li>Si votre demande concerne un abonnement, précisez <strong>Google Play</strong> ou <strong>Apple App Store</strong>.</li>
+                </ul>
+                <a class="cta" href="mailto:devmile45@gmail.com?subject=WeanAtlas%20Data%20Deletion%20Request">Envoyer la demande</a>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> Données supprimées</h2>
+                <p>Lors d'une réinitialisation, les données locales suivantes peuvent être supprimées de l'appareil :</p>
+                <ul>
+                    <li>Données du profil bébé : nom, date de naissance, sexe, type d'alimentation, allergies, préférences alimentaires, notes et référence de photo.</li>
+                    <li>Entrées de croissance, repas terminés, repas personnalisés, repas remplacés, retours de repas, jalons et séries.</li>
+                    <li>Aliments enregistrés, liste de courses, région sélectionnée, état d'essai et préférences d'application.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> Données pouvant être conservées</h2>
+                <p>Certaines données limitées peuvent rester pour des raisons de facturation ou légales :</p>
+                <ul>
+                    <li>Historique d'abonnement et d'achat conservé par Google Play ou l'App Store.</li>
+                    <li>Métadonnées d'abonnement limitées ou identifiants anonymes traités par RevenueCat.</li>
+                    <li>Sauvegardes ou copies au niveau de l'appareil hors de notre contrôle direct.</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>La suppression des données de l'application n'annule pas automatiquement un abonnement actif. Les abonnements du store doivent être gérés séparément.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Contact</h2>
+                <p>Pour toute question ou aide liée à la suppression, contactez <strong>devmile45@gmail.com</strong>.</p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 WeanAtlas. Tous droits réservés.</p>
+                <p><a href="../privacy/index.html">Politique de confidentialité</a> | <a href="../terms/index.html">Conditions d'utilisation</a></p>
+            </div>
+        </div>
+
+        <div class="lang-content" data-lang="es">
+            <div class="header">
+                <span class="badge">Eliminación</span>
+                <h1>Eliminación de cuenta y datos</h1>
+                <p class="updated">Última actualización: 6 de mayo de 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Resumen</h2>
+                <p>WeanAtlas (BabyBite) es principalmente una aplicación local para alimentación y nutrición del bebé. Esta página explica cómo borrar los datos de la app y cómo solicitar la eliminación de datos auxiliares limitados relacionados con suscripciones.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> No hay sistema de cuenta</h2>
+                <p>WeanAtlas <strong>no crea ni requiere actualmente una cuenta personal de usuario</strong>. No existe registro, inicio de sesión, nombre de usuario ni contraseña dentro de la app.</p>
+                <div class="highlight-box">
+                    <p>La mayor parte de los datos del perfil del bebé, comidas, crecimiento, hitos, compras y ajustes se guarda solo en su dispositivo.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> Borrar datos dentro de la app</h2>
+                <p>Si todavía tiene la app instalada, puede borrar sus datos locales directamente en WeanAtlas:</p>
+                <ul>
+                    <li>Abra <strong>WeanAtlas</strong>.</li>
+                    <li>Vaya a <strong>Settings</strong>.</li>
+                    <li>Abra la sección <strong>Danger Zone</strong>.</li>
+                    <li>Active el interruptor de Danger Zone.</li>
+                    <li>Pulse <strong>Reset App Data</strong>.</li>
+                    <li>Confirme la restauración.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Borrar sin la app</h2>
+                <p>Si ya no tiene acceso a la aplicación, puede pedir ayuda por correo.</p>
+                <ul>
+                    <li>Escriba a <strong>devmile45@gmail.com</strong>.</li>
+                    <li>Use el asunto <strong>WeanAtlas Data Deletion Request</strong>.</li>
+                    <li>Si su solicitud está relacionada con una suscripción, indique <strong>Google Play</strong> o <strong>Apple App Store</strong>.</li>
+                </ul>
+                <a class="cta" href="mailto:devmile45@gmail.com?subject=WeanAtlas%20Data%20Deletion%20Request">Enviar solicitud</a>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> Qué se elimina</h2>
+                <p>Cuando restablece la app, se pueden eliminar de ese dispositivo los siguientes datos locales:</p>
+                <ul>
+                    <li>Datos del perfil del bebé como nombre, fecha de nacimiento, género, tipo de alimentación, alergias, preferencias dietéticas, notas y referencia de foto.</li>
+                    <li>Registros de crecimiento, comidas completadas, comidas personalizadas, cambios de comidas, opiniones de comidas, hitos y rachas.</li>
+                    <li>Alimentos guardados, lista de compras, región seleccionada, estado de prueba y preferencias de la app.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> Qué puede conservarse</h2>
+                <p>Algunos datos limitados pueden mantenerse por razones legales o de facturación:</p>
+                <ul>
+                    <li>Historial de compras y suscripciones conservado por Google Play o Apple App Store.</li>
+                    <li>Metadatos limitados de suscripción o identificadores anónimos tratados por RevenueCat.</li>
+                    <li>Copias de seguridad o copias a nivel del dispositivo fuera de nuestro control directo.</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>Borrar los datos de la app no cancela automáticamente una suscripción activa. Las suscripciones deben gestionarse por separado en la tienda correspondiente.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Contacto</h2>
+                <p>Si necesita ayuda con la eliminación o tiene preguntas, contacte con <strong>devmile45@gmail.com</strong>.</p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 WeanAtlas. Todos los derechos reservados.</p>
+                <p><a href="../privacy/index.html">Política de privacidad</a> | <a href="../terms/index.html">Términos del servicio</a></p>
+            </div>
+        </div>
+
+        <div class="lang-content" data-lang="de">
+            <div class="header">
+                <span class="badge">Löschung</span>
+                <h1>Konto- und Datenlöschung</h1>
+                <p class="updated">Zuletzt aktualisiert: 6. Mai 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> Überblick</h2>
+                <p>WeanAtlas (BabyBite) ist in erster Linie eine lokal arbeitende App für Babynahrung und Ernährung. Diese Seite erklärt, wie App-Daten gelöscht werden können und wie eine Entfernung begrenzter abonnementsbezogener Hilfsdaten angefragt werden kann.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> Kein Kontosystem</h2>
+                <p>WeanAtlas <strong>erstellt derzeit kein persönliches Benutzerkonto und verlangt auch keines</strong>. Es gibt keine Registrierung, keine Anmeldung, keinen Benutzernamen und kein Passwort in der App.</p>
+                <div class="highlight-box">
+                    <p>Die meisten Daten zu Babyprofil, Mahlzeiten, Wachstum, Meilensteinen, Einkaufslisten und Einstellungen werden nur lokal auf Ihrem Gerät gespeichert.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> Daten in der App löschen</h2>
+                <p>Wenn die App noch installiert ist, können Sie lokale Daten direkt in WeanAtlas löschen:</p>
+                <ul>
+                    <li>Öffnen Sie <strong>WeanAtlas</strong>.</li>
+                    <li>Gehen Sie zu <strong>Settings</strong>.</li>
+                    <li>Öffnen Sie den Bereich <strong>Danger Zone</strong>.</li>
+                    <li>Aktivieren Sie den Danger-Zone-Schalter.</li>
+                    <li>Tippen Sie auf <strong>Reset App Data</strong>.</li>
+                    <li>Bestätigen Sie die Rücksetzung.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> Löschen ohne App</h2>
+                <p>Wenn Sie keinen Zugriff mehr auf die App haben, können Sie Hilfe per E-Mail anfordern.</p>
+                <ul>
+                    <li>Schreiben Sie an <strong>devmile45@gmail.com</strong>.</li>
+                    <li>Verwenden Sie den Betreff <strong>WeanAtlas Data Deletion Request</strong>.</li>
+                    <li>Falls es um Abonnementdaten geht, nennen Sie bitte <strong>Google Play</strong> oder <strong>Apple App Store</strong>.</li>
+                </ul>
+                <a class="cta" href="mailto:devmile45@gmail.com?subject=WeanAtlas%20Data%20Deletion%20Request">Anfrage senden</a>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> Was gelöscht wird</h2>
+                <p>Bei einer Zurücksetzung können unter anderem folgende lokal gespeicherten Daten von diesem Gerät entfernt werden:</p>
+                <ul>
+                    <li>Babyprofildaten wie Name, Geburtsdatum, Geschlecht, Fütterungsart, Allergien, Ernährungspräferenzen, Notizen und Fotoreferenz.</li>
+                    <li>Wachstumseinträge, erledigte Mahlzeiten, benutzerdefinierte Mahlzeiten, getauschte Mahlzeiten, Feedback, Meilensteine und Serien.</li>
+                    <li>Gespeicherte Lebensmittel, Einkaufsliste, ausgewählte Region, Teststatus und App-Einstellungen.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> Was erhalten bleiben kann</h2>
+                <p>Einige begrenzte Daten können aus rechtlichen oder abrechnungsbezogenen Gründen erhalten bleiben:</p>
+                <ul>
+                    <li>Abonnement- und Kaufhistorie, die von Google Play oder dem Apple App Store gespeichert wird.</li>
+                    <li>Begrenzte Abonnement-Metadaten oder anonyme Kennungen, die von RevenueCat verarbeitet werden.</li>
+                    <li>Backups oder gerätebezogene Kopien außerhalb unserer direkten Kontrolle.</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>Das Löschen der App-Daten beendet ein aktives Abonnement nicht automatisch. Store-Abonnements müssen separat verwaltet oder gekündigt werden.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> Kontakt</h2>
+                <p>Wenn Sie Hilfe bei der Löschung benötigen oder Fragen haben, kontaktieren Sie <strong>devmile45@gmail.com</strong>.</p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 WeanAtlas. Alle Rechte vorbehalten.</p>
+                <p><a href="../privacy/index.html">Datenschutzrichtlinie</a> | <a href="../terms/index.html">Nutzungsbedingungen</a></p>
+            </div>
+        </div>
+
+        <div class="lang-content" data-lang="ar">
+            <div class="header">
+                <span class="badge">الحذف</span>
+                <h1>حذف الحساب والبيانات</h1>
+                <p class="updated">آخر تحديث: 6 مايو 2026</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> نظرة عامة</h2>
+                <p>WeanAtlas (BabyBite) هو في الأساس تطبيق محلي لمتابعة تغذية الطفل. تشرح هذه الصفحة كيفية حذف بيانات التطبيق وطلب حذف أي بيانات مساندة محدودة مرتبطة بالاشتراك.</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> لا يوجد نظام حسابات</h2>
+                <p>لا يقوم WeanAtlas <strong>حالياً بإنشاء حساب مستخدم شخصي ولا يتطلب ذلك</strong>. لا يوجد تسجيل أو تسجيل دخول أو اسم مستخدم أو كلمة مرور داخل التطبيق.</p>
+                <div class="highlight-box">
+                    <p>يتم تخزين معظم بيانات ملف الطفل والوجبات والنمو والمراحل وقائمة التسوق والإعدادات محلياً على جهازك فقط.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> حذف البيانات من داخل التطبيق</h2>
+                <p>إذا كان التطبيق ما يزال مثبتاً، يمكنك حذف البيانات المحلية مباشرة من WeanAtlas:</p>
+                <ul>
+                    <li>افتح <strong>WeanAtlas</strong>.</li>
+                    <li>اذهب إلى <strong>Settings</strong>.</li>
+                    <li>افتح قسم <strong>Danger Zone</strong>.</li>
+                    <li>فعّل مفتاح Danger Zone.</li>
+                    <li>اضغط على <strong>Reset App Data</strong>.</li>
+                    <li>أكد خطوات إعادة الضبط.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> الحذف بدون التطبيق</h2>
+                <p>إذا لم يعد لديك وصول إلى التطبيق، يمكنك طلب المساعدة عبر البريد الإلكتروني.</p>
+                <ul>
+                    <li>أرسل رسالة إلى <strong>devmile45@gmail.com</strong>.</li>
+                    <li>استخدم عنوان <strong>WeanAtlas Data Deletion Request</strong>.</li>
+                    <li>إذا كان الطلب متعلقاً بالاشتراك، فاذكر <strong>Google Play</strong> أو <strong>Apple App Store</strong>.</li>
+                </ul>
+                <a class="cta" href="mailto:devmile45@gmail.com?subject=WeanAtlas%20Data%20Deletion%20Request">إرسال طلب الحذف</a>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> ما الذي يتم حذفه</h2>
+                <p>عند إعادة الضبط، قد تتم إزالة البيانات المحلية التالية من هذا الجهاز:</p>
+                <ul>
+                    <li>بيانات ملف الطفل مثل الاسم وتاريخ الميلاد والجنس ونوع التغذية والحساسية والتفضيلات الغذائية والملاحظات ومرجع الصورة.</li>
+                    <li>سجلات النمو والوجبات المكتملة والوجبات المخصصة والوجبات المستبدلة وتقييمات الوجبات والمراحل والسلاسل.</li>
+                    <li>الأطعمة المحفوظة وقائمة التسوق والمنطقة المختارة وحالة التجربة وإعدادات التطبيق.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> ما قد يتم الاحتفاظ به</h2>
+                <p>قد تبقى بعض البيانات المحدودة لأسباب قانونية أو متعلقة بالفوترة:</p>
+                <ul>
+                    <li>سجل الاشتراك والشراء الذي تحتفظ به Google Play أو Apple App Store.</li>
+                    <li>بيانات اشتراك محدودة أو معرفات مجهولة تتم معالجتها بواسطة RevenueCat.</li>
+                    <li>نسخ احتياطية أو نسخ على مستوى الجهاز خارج سيطرتنا المباشرة.</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>حذف بيانات التطبيق لا يلغي الاشتراك النشط تلقائياً. يجب إدارة اشتراكات المتجر أو إلغاؤها بشكل منفصل.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> التواصل</h2>
+                <p>إذا كنت بحاجة إلى مساعدة في الحذف أو لديك أي أسئلة، تواصل مع <strong>devmile45@gmail.com</strong>.</p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 WeanAtlas. جميع الحقوق محفوظة.</p>
+                <p><a href="../privacy/index.html">سياسة الخصوصية</a> | <a href="../terms/index.html">شروط الخدمة</a></p>
+            </div>
+        </div>
+
+        <div class="lang-content" data-lang="zh">
+            <div class="header">
+                <span class="badge">删除</span>
+                <h1>账户与数据删除</h1>
+                <p class="updated">最后更新：2026年5月6日</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">1</span> 概述</h2>
+                <p>WeanAtlas（BabyBite）主要是一款本地运行的婴儿喂养与营养应用。本页面说明如何删除应用数据，以及如何申请删除少量与订阅相关的辅助数据。</p>
+            </div>
+            <div class="card">
+                <h2><span class="num">2</span> 没有应用账户系统</h2>
+                <p>WeanAtlas <strong>目前不会创建或要求个人用户账户</strong>。应用内没有注册、登录、用户名或密码系统。</p>
+                <div class="highlight-box">
+                    <p>大多数宝宝资料、餐食、成长、里程碑、购物清单和设置数据仅保存在您的设备本地。</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">3</span> 在应用内删除数据</h2>
+                <p>如果应用仍安装在设备上，您可以直接在 WeanAtlas 中删除本地数据：</p>
+                <ul>
+                    <li>打开 <strong>WeanAtlas</strong>。</li>
+                    <li>进入 <strong>Settings</strong>。</li>
+                    <li>打开 <strong>Danger Zone</strong> 部分。</li>
+                    <li>启用 Danger Zone 开关。</li>
+                    <li>点击 <strong>Reset App Data</strong>。</li>
+                    <li>确认重置步骤。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">4</span> 无法访问应用时的删除方式</h2>
+                <p>如果您已经无法访问应用，仍然可以通过电子邮件请求帮助。</p>
+                <ul>
+                    <li>发送邮件至 <strong>devmile45@gmail.com</strong>。</li>
+                    <li>邮件主题填写 <strong>WeanAtlas Data Deletion Request</strong>。</li>
+                    <li>如果请求与订阅有关，请注明 <strong>Google Play</strong> 或 <strong>Apple App Store</strong>。</li>
+                </ul>
+                <a class="cta" href="mailto:devmile45@gmail.com?subject=WeanAtlas%20Data%20Deletion%20Request">发送删除请求</a>
+            </div>
+            <div class="card">
+                <h2><span class="num">5</span> 将被删除的内容</h2>
+                <p>执行重置后，以下本地数据可能会从该设备中移除：</p>
+                <ul>
+                    <li>宝宝资料，例如姓名、出生日期、性别、喂养类型、过敏信息、饮食偏好、备注和照片引用。</li>
+                    <li>成长记录、已完成餐食、自定义餐食、替换餐食、餐食反馈、里程碑和连续记录。</li>
+                    <li>收藏食物、购物清单、已选地区、试用状态以及应用偏好设置。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2><span class="num">6</span> 可能被保留的内容</h2>
+                <p>出于计费或法律原因，部分有限数据可能会被保留：</p>
+                <ul>
+                    <li>由 Google Play 或 Apple App Store 保留的订阅与购买历史。</li>
+                    <li>由 RevenueCat 处理的有限订阅元数据或匿名标识符。</li>
+                    <li>设备级备份或不受我们直接控制的副本。</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>删除应用数据不会自动取消有效订阅。商店订阅需要在 Google Play 或 Apple 设置中单独管理或取消。</p>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="num">7</span> 联系方式</h2>
+                <p>如果您需要删除帮助或有任何疑问，请联系 <strong>devmile45@gmail.com</strong>。</p>
+            </div>
+            <div class="footer">
+                <p>&copy; 2026 WeanAtlas. 保留所有权利。</p>
+                <p><a href="../privacy/index.html">隐私政策</a> | <a href="../terms/index.html">服务条款</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            const event = window.event || arguments.callee.caller.arguments[0];
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.lang-content[data-lang="' + lang + '"]').classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+
+</html>
